@@ -1,0 +1,22 @@
+﻿@using Nop.Plugin.Widgets.StoreSelector
+
+@model Nop.Plugin.Widgets.StoreSelector.Models.StoreSelectorModel
+
+@inject Nop.Core.IWebHelper _webHelper
+
+@if (Model.AvailableStores.Count > 1)
+{
+    <div class="store-selector">
+        @{
+            var returnUrl = _webHelper.GetRawUrl(Context.Request);
+            var stores = await Model.AvailableStores.SelectAwait(async x => new SelectListItem
+            {
+                Text =  x.Name,
+                Value = Url.RouteUrl(StoreSelectorDefaults.ChangeStoreRouteName, new { customerstore = x.Id, returnUrl }, _webHelper.GetCurrentRequestProtocol()),
+                Selected = x.Id.Equals(Model.CurrentStoreId) // x.Id.Equals(Model.CurrentCurrencyId)
+            }).ToListAsync();
+            
+            <select id="customerStores" name="customerStores" asp-items="@stores" onchange="setLocation(this.value);" aria-label="@T("Store.Selector.Label")"></select>
+        }
+    </div>
+}
