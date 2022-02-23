@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Store Selector",
+  "SystemName": "Widgets.StoreSelector",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "Novusweb",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.StoreSelector.dll",
+  "Description": "This widget lets you choose between stores in the storefront."
+}
